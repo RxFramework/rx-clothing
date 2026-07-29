@@ -1,0 +1,759 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap");
+
+:root {
+    --rx-primary: #f44336;
+    --rx-primary-dim: rgba(244, 67, 54, 0.15);
+    --rx-primary-glow: rgba(244, 67, 54, 0.35);
+    --rx-on-primary: #ffffff;
+    --rx-surface: #121016;
+    --rx-surface-raised: #1a1820;
+    --rx-surface-card: #211f26;
+    --rx-surface-hover: #2b2930;
+    --rx-surface-input: #2b2930;
+    --rx-on-surface: #e8e4ea;
+    --rx-on-surface-muted: rgba(232, 228, 234, 0.55);
+    --rx-outline: rgba(121, 116, 126, 0.35);
+    --rx-outline-strong: #79747e;
+    --rx-success: #09ff00;
+    --rx-success-dim: rgba(9, 255, 0, 0.12);
+    --rx-error: #ff0000;
+    --rx-error-dim: rgba(255, 0, 0, 0.12);
+    --rx-radius-sm: 8px;
+    --rx-radius-md: 12px;
+    --rx-radius-lg: 16px;
+    --rx-shadow-glow: 0 0 24px var(--rx-primary-glow);
+    --font: "Exo 2", system-ui, sans-serif;
+}
+
+/* Override reset overflow so panels can scroll */
+.clothing-menu-container,
+.clothing-menu-container * {
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    font-family: var(--font);
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+/* ── Main panel ── */
+.clothing-menu-container {
+    display: none;
+    position: absolute;
+    top: 0.5vh;
+    right: -25vw;
+    margin-right: 2vh;
+    width: 38vh;
+    max-width: 420px;
+    height: 99vh;
+    flex-direction: column;
+    background: var(--rx-surface-raised);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-lg);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), var(--rx-shadow-glow);
+    overflow: hidden;
+}
+
+/* ── Brand ── */
+.clothing-menu-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.2vh;
+    padding: 1.4vh 1.6vh 1vh;
+    border-bottom: 1px solid var(--rx-outline);
+    background: linear-gradient(180deg, #1e1c24 0%, var(--rx-surface-raised) 100%);
+    flex-shrink: 0;
+}
+
+.clothing-brand-icon {
+    width: 3.6vh;
+    height: 3.6vh;
+    display: block;
+    object-fit: contain;
+    border-radius: var(--rx-radius-sm);
+    box-shadow: 0 4px 12px var(--rx-primary-glow);
+    flex-shrink: 0;
+}
+
+.clothing-brand-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.clothing-brand-title {
+    font-size: 1.1vh;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rx-on-surface-muted);
+}
+
+.clothing-brand-sub {
+    font-size: 1.5vh;
+    font-weight: 700;
+    color: var(--rx-on-surface);
+}
+
+/* ── Camera row ── */
+.clothing-menu-header-cameras {
+    display: flex;
+    gap: 0.6vh;
+    padding: 1vh 1.2vh;
+    border-bottom: 1px solid var(--rx-outline);
+    flex-shrink: 0;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+}
+
+.clothing-menu-header-camera-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.8vh;
+    color: var(--rx-on-surface-muted);
+    background: var(--rx-surface-card);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-sm);
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    float: none;
+    position: relative;
+    top: auto;
+    width: auto;
+    line-height: normal;
+}
+
+.clothing-menu-header-camera-btn:hover {
+    color: var(--rx-on-surface);
+    background: var(--rx-surface-hover);
+    border-color: rgba(244, 67, 54, 0.35);
+}
+
+.clothing-menu-header-camera-btn.selected-cam {
+    color: var(--rx-on-primary);
+    background: var(--rx-primary);
+    border-color: transparent;
+    box-shadow: 0 4px 12px var(--rx-primary-glow);
+}
+
+.clothing-menu-header-camera-btn > i {
+    font-size: 1.5vh;
+}
+
+/* ── Tab bar ── */
+.clothing-menu-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5vh;
+    padding: 0.8vh 1vh;
+    border-bottom: 1px solid var(--rx-outline);
+    flex-shrink: 0;
+    position: relative;
+    top: auto;
+    height: auto;
+    width: 100%;
+}
+
+.clothing-menu-header-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9vh 0.6vh;
+    color: var(--rx-on-surface-muted);
+    background: var(--rx-surface-card);
+    border: 1px solid transparent;
+    border-radius: var(--rx-radius-sm);
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    float: none;
+    position: relative;
+    top: auto;
+    height: auto;
+    line-height: 1.2;
+}
+
+.clothing-menu-header-btn:hover {
+    color: var(--rx-on-surface);
+    background: var(--rx-surface-hover);
+}
+
+.clothing-menu-header-btn.selected {
+    color: var(--rx-on-primary);
+    background: var(--rx-primary);
+    border-color: transparent;
+    box-shadow: 0 4px 12px var(--rx-primary-glow);
+}
+
+.clothing-menu-header-btn > p {
+    font-family: var(--font);
+    font-size: 0.95vh;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ── Scroll panels ── */
+.clothing-menu-roomOutfits-container,
+.clothing-menu-myOutfits-container,
+.clothing-menu-character-container,
+.clothing-menu-clothing-container,
+.clothing-menu-accessoires-container,
+.clothing-menu-hair-container {
+    display: none;
+    flex: 1;
+    min-height: 0;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: 1vh 1.2vh;
+    margin: 0;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+}
+
+.clothing-menu-myOutfits-container {
+    padding-bottom: 2vh;
+}
+
+/* ── Option cards ── */
+.clothing-menu-option {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    margin-bottom: 1vh;
+    padding: 1.2vh;
+    background: var(--rx-surface-card);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-md);
+    overflow: visible;
+}
+
+.clothing-menu-option-header {
+    color: var(--rx-on-surface);
+    padding: 0 0 0.8vh;
+    margin: 0 0 0.6vh;
+    border-bottom: 1px solid var(--rx-outline);
+    width: 100%;
+}
+
+.clothing-menu-option-header > p {
+    text-align: left;
+    font-family: var(--font);
+    font-size: 1.35vh;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.clothing-menu-option-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3.2vh 1fr 3.2vh;
+    grid-template-rows: auto auto;
+    gap: 0.5vh 0.6vh;
+    align-items: center;
+    width: 100%;
+    float: none;
+    height: auto;
+    margin: 0.8vh 0 0;
+    padding: 0;
+}
+
+.clothing-menu-option-item-header {
+    grid-column: 1 / -1;
+    position: relative;
+    font-size: 1vh;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rx-on-surface-muted);
+}
+
+.clothing-menu-option-item-header > p {
+    font-family: var(--font);
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+}
+
+.clothing-menu-option-item-left,
+.clothing-menu-option-item-right {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 3.2vh;
+    height: 3.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--rx-surface-input);
+    color: var(--rx-on-surface);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-sm);
+    line-height: 1;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.clothing-menu-option-item-left:hover,
+.clothing-menu-option-item-right:hover {
+    background: var(--rx-primary-dim);
+    border-color: var(--rx-primary);
+    color: var(--rx-primary);
+    cursor: pointer;
+}
+
+.item-number {
+    position: relative;
+    width: 100%;
+    height: 3.2vh;
+    top: auto;
+    left: auto;
+    background: var(--rx-surface);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-sm);
+    text-align: center;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.2vh;
+    letter-spacing: 0.05em;
+    color: var(--rx-on-surface);
+    outline: none;
+    overflow: visible;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.item-number:focus {
+    border-color: var(--rx-primary);
+    box-shadow: 0 0 0 2px var(--rx-primary-dim);
+}
+
+/* Sliders (face mix) */
+.slidecontainer {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 0.4vh 0;
+}
+
+.slider {
+    appearance: none;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    height: 0.6vh;
+    margin: 1.2vh 0 1.8vh;
+    background: var(--rx-surface);
+    border-radius: 999px;
+    outline: none;
+    opacity: 1;
+    border: 1px solid var(--rx-outline);
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.6vh;
+    height: 1.6vh;
+    background: var(--rx-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--rx-primary-glow);
+    border: 2px solid var(--rx-on-primary);
+}
+
+.facemix-labels {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.facemix-label-left,
+.facemix-label-right {
+    font-size: 0.9vh;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--rx-on-surface-muted);
+    font-weight: 600;
+}
+
+/* ── Outfit buttons ── */
+.clothing-menu-outfit-option-button,
+.clothing-menu-myOutfit-option-button,
+.clothing-menu-myOutfit-option-button-remove {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    min-height: 3.6vh;
+    margin: 0.8vh 0 0;
+    padding: 0.8vh 1.4vh;
+    background: linear-gradient(135deg, var(--rx-primary), #d32f2f);
+    border-radius: var(--rx-radius-sm);
+    border: none;
+    box-shadow: 0 4px 12px var(--rx-primary-glow);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    top: auto;
+    left: auto;
+    right: auto;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+}
+
+.clothing-menu-outfit-option-button {
+    width: 100%;
+}
+
+.clothing-menu-myOutfit-option-button,
+.clothing-menu-myOutfit-option-button-remove {
+    width: calc(50% - 0.5vh);
+    display: inline-flex;
+}
+
+.clothing-menu-myOutfit-option-button {
+    float: left;
+    margin-right: 1vh;
+}
+
+.clothing-menu-myOutfit-option-button-remove {
+    float: right;
+    background: var(--rx-surface-hover);
+    border: 1px solid var(--rx-outline);
+    box-shadow: none;
+}
+
+.clothing-menu-outfit-option-button:hover,
+.clothing-menu-myOutfit-option-button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.clothing-menu-myOutfit-option-button-remove:hover {
+    background: var(--rx-error-dim);
+    border-color: var(--rx-error);
+    transform: none;
+}
+
+.clothing-menu-outfit-option-button > p,
+.clothing-menu-myOutfit-option-button > p,
+.clothing-menu-myOutfit-option-button-remove > p {
+    color: var(--rx-on-primary);
+    font-family: var(--font);
+    font-size: 1.05vh;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.clothing-menu-myOutfit-option-button-remove > p {
+    color: var(--rx-error);
+}
+
+/* ── Footer actions ── */
+.clothing-menu-option-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6vh;
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    padding: 1vh 1.2vh 1.4vh;
+    border-top: 1px solid var(--rx-outline);
+    background: var(--rx-surface);
+    flex-shrink: 0;
+}
+
+.clothing-menu-option-button {
+    position: relative;
+    float: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4vh;
+    width: 100%;
+    background: linear-gradient(135deg, var(--rx-primary), #d32f2f);
+    border-radius: var(--rx-radius-sm);
+    border: none;
+    box-shadow: 0 4px 12px var(--rx-primary-glow);
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+#cancel-menu {
+    background: var(--rx-surface-hover);
+    box-shadow: none;
+    border: 1px solid var(--rx-outline);
+}
+
+#cancel-menu:hover {
+    background: var(--rx-error-dim);
+    border-color: var(--rx-error);
+}
+
+#save-outfit {
+    background: var(--rx-surface-card);
+    box-shadow: none;
+    border: 1px solid var(--rx-outline);
+}
+
+#save-outfit:hover {
+    background: var(--rx-surface-hover);
+    border-color: var(--rx-primary);
+}
+
+.clothing-menu-option-button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+#cancel-menu:hover {
+    transform: none;
+}
+
+.clothing-menu-option-button > p {
+    line-height: 1.2;
+    font-size: 1.05vh;
+    font-family: var(--font);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rx-on-primary);
+    text-align: center;
+    margin: 0;
+}
+
+#cancel-menu > p {
+    color: var(--rx-on-surface-muted);
+}
+
+#cancel-menu:hover > p {
+    color: var(--rx-error);
+}
+
+#save-outfit > p {
+    color: var(--rx-on-surface);
+}
+
+/* ── Save outfit modal ── */
+.clothing-menu-save-outfit-name {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32vh;
+    min-width: 280px;
+    padding: 2vh;
+    background: var(--rx-surface-raised);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-lg);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), var(--rx-shadow-glow);
+    z-index: 100;
+}
+
+.clothing-menu-save-outfit-name-header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 1.5vh;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid var(--rx-outline);
+}
+
+.clothing-menu-save-outfit-name-header > p {
+    font-family: var(--font);
+    font-size: 1.6vh;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rx-on-surface);
+    margin: 0;
+}
+
+#outfit-name {
+    position: relative;
+    display: block;
+    margin: 0 auto 1.5vh;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 4.2vh;
+    padding: 0 1.2vh;
+    text-align: center;
+    background: var(--rx-surface-card);
+    border: 1px solid var(--rx-outline);
+    border-radius: var(--rx-radius-sm);
+    color: var(--rx-on-surface);
+    font-family: var(--font);
+    font-size: 1.4vh;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#outfit-name:focus {
+    border-color: var(--rx-primary);
+    box-shadow: 0 0 0 2px var(--rx-primary-dim);
+}
+
+#outfit-name::placeholder {
+    color: var(--rx-on-surface-muted);
+    font-family: var(--font);
+    font-size: 1.2vh;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.clothing-menu-save-outfit-name-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8vh;
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    left: auto;
+    right: auto;
+}
+
+.clothing-menu-save-outfit-name-button {
+    position: relative;
+    float: none;
+    width: 100%;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rx-primary), #d32f2f);
+    border-radius: var(--rx-radius-sm);
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+#cancel-outfit-save {
+    background: var(--rx-surface-hover);
+    border: 1px solid var(--rx-outline);
+}
+
+.clothing-menu-save-outfit-name-button:hover {
+    opacity: 0.9;
+}
+
+.clothing-menu-save-outfit-name-button > p {
+    font-family: var(--font);
+    font-size: 1.1vh;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rx-on-primary);
+    margin: 0;
+}
+
+#cancel-outfit-save > p {
+    color: var(--rx-on-surface-muted);
+}
+
+/* ── Rotation camera widget ── */
+.change-camera-buttons {
+    display: none;
+    position: fixed;
+    bottom: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    width: 22vh;
+    border-radius: var(--rx-radius-md);
+    overflow: hidden;
+    border: 1px solid var(--rx-outline);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.change-camera-button {
+    position: relative;
+    height: 5.5vh;
+    width: 50%;
+    float: left;
+    background: var(--rx-surface-raised);
+    text-align: center;
+    transition: background 0.15s ease;
+    border: none;
+}
+
+.change-camera-button:hover {
+    background: var(--rx-primary);
+    cursor: pointer;
+}
+
+.change-camera-button > i {
+    font-size: 2.2vh;
+    color: var(--rx-on-surface);
+    line-height: 5.5vh;
+}
+
+.change-camera-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 2vh;
+    background: var(--rx-primary);
+    line-height: 2vh;
+    border-radius: 0;
+}
+
+.change-camera-footer > p {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.85vh;
+    text-transform: uppercase;
+    color: var(--rx-on-primary);
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--rx-outline-strong);
+    border-radius: 4px;
+}
